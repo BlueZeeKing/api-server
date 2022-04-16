@@ -1,17 +1,18 @@
-const request = require('request');
+const axios = require("axios");
 
-export default function handler(req, res) {
-  request('https://www.apsva.us/wp-json/wp/v2/mat_alert', function (error, response, body) {
-    let data = JSON.parse(body)
-    let outData = {}
-    if (data.length == 0) {
-      outData['title'] = ""
-      outData['link'] = ""
-    } else {
-      outData['title'] = data[0]['title']['rendered']
-      outData['link'] = data[0]['link']
-    }
-    outData['available'] = data.length > 0
-    res.status(200).send(JSON.stringify(outData));
-  })
+export default async function handler(req, res) {
+  const response = await axios.get("https://www.apsva.us/wp-json/wp/v2/mat_alert")
+  let data = {};
+
+  if (data.length == 0) {
+    data["title"] = "";
+    data["link"] = "";
+  } else {
+    data["title"] = response.data[0]["title"]["rendered"];
+    data["link"] = response.data[0]["link"];
+  }
+
+  data["available"] = response.data.length > 0;
+
+  res.status(response.status).send(JSON.stringify(data));
 }
