@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   const response = await axios.get("https://www.apsva.us/wp-json/wp/v2/mat_alert")
   let data = {};
 
-  if (data.length == 0) {
+  if (response.data.length == 0) {
     data["title"] = "";
     data["link"] = "";
   } else {
