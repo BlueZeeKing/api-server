@@ -9,10 +9,7 @@ export default async function handler(req, res) {
   );
 
   const modrinthResponse = await axios.get(
-    `https://api.modrinth.com/v2/project/${req.query.modrinthid}`,
-    {
-      headers: { "x-api-key": process.env.API_KEY },
-    }
+    `https://api.modrinth.com/v2/project/${req.query.modrinthid}`
   );
 
   console.log(modrinthResponse.data.downloads);
