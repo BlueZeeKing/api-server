@@ -6,7 +6,7 @@ export default async function handler(req, res) {
         date_gmt: "Thu, 15 Dec 2022 22:21:55 GMT",
         modified_gmt: "Thu, 15 Dec 2022 22:21:55 GMT",
         slug: "test-date",
-        status: "warning",
+        status: "publish",
         link: "",
         title: {
           rendered: "Test message",
